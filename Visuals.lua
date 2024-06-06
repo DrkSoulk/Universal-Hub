@@ -44,7 +44,7 @@ getgenv().UniversalHub.Visuals = {
             Rotation = -2,
             Dot = false,
             DotColor = Color3.fromRGB(255, 255, 255),
-            DotSize = 1,
+            DotSize = 5,
             DotTransparency = 0.5,
             DotFilled = true,
             DotThickness = 1
@@ -235,8 +235,51 @@ local Visuals = {
                 local Vector, OnScreen = WorldToViewportPoint(GetCharacterPart(Character, "Head").Position)
 
                 if OnScreen and Environment.Text.Enabled then
-                    return
+                    PlayerTable.Text.Visuals = PlayerTable.Checks.Alive and PlayerTable.Checks.Team and true or false
+
+                    if PlayerTable.Text.Visible then
+                        local Content = ""
+
+                        PlayerTable.Text.Center = true
+                        PlayerTable.Text.Size = Environment.Text.Size
+                        PlayerTable.Text.Outline = Environment.Text.Outline
+                        PlayerTable.Text.OutlineColor = Environment.Text.OutlineColor
+                        PlayerTable.Text.Color = Environment.Text.Color
+                        PlayerTable.Text.Transparency = Environment.Text.Transparency
+                        PlayerTable.Text.Font = Environment.Text.Font
+
+                        if Environment.Text.DisplayName then
+                            if Environment.Text.Nickname then
+                                Content = Player.DisplayName
+                            else
+                                Content = Player.Name
+                            end
+                        end
+
+                        if Environment.Text.DisplayDistance then
+                            if Content ~= "" then
+                                Content = Content.." "
+                            end
+
+                            Content = Content.."["..tostring(math.floor((GetCharacterPart(Character, "HumanoidRootPart").Position - Camera.CFrame.Position).Magnitude)).."]"
+                        end
+
+                        if Environment.Text.DisplayHealth then
+                            if Content ~= "" then
+                                Content = Content.." "
+                            end
+
+                            Content = Content.."("..tostring(math.floor(Character:FindFirstChildOfClass("Humanoid").Health))..")"
+                        end
+
+                        PlayerTable.Text = Content
+                        PlayerTable.Position = Vector2.new(Vector.X, Vector.Y - Environment.Text.Offset)
+                    end
+                else
+                    PlayerTable.Text.Visible = false
                 end
+            else
+                PlayerTable.Text.Visible = false
             end
         end)
     end
@@ -259,7 +302,7 @@ local function Wrap(Player)
             AssignRigType(Player)
             SetupChecks(Player)
 
-            --Visuals.AddText(Player)
+            Visuals.AddText(Player)
         end
     end
 end
@@ -279,7 +322,7 @@ local function UnWrap(Player)
         end
 
         pcall(function()
-            --Table.Text:Remove()
+            Table.Text:Remove()
         end)
 
         Environment.WrappedPlayers[Index] = nil
