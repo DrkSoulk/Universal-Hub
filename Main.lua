@@ -16,154 +16,358 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/DrkSoulk/Universal-Hu
 local Visuals = getgenv().UniversalHub.Visuals
 
 --// Library
-local Library = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
-local Window = Library:Window("Universal Hub | By DrkSlk")
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua'))()
+local Window = Library:CreateWindow({
+    Name = "Universal Hub | By DrkSlk",
+    LoadingTitle = "Universal Hub",
+    LoadingSubtitle = "By DrkSlk",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "UniversalHub",
+        FileName = "UniversalHub"
+    }
+})
 
---// Servers
-local VisualsServer = Window:Server("Visuals", "rbxassetid://17744165338")
+--// Tabs
+local VisualsTab = Window:CreateTab("Visuals", "17744165338")
 
---// Visual Channels
-local MainChannel = VisualsServer:Channel("Main")
-local CrosshairChannel = VisualsServer:Channel("Crosshair")
-local TextChannel = VisualsServer:Channel("Text")
+--// Visual Sections
+local VisualsSection = VisualsTab:CreateSection("Main")
+local TextSection = VisualsTab:CreateSection("Text")
+local CrosshairSection = VisualsTab:CreateSection("Crosshair")
 
---// Main Channel
-MainChannel:Toggle("Team Check", false, function(Var)
-    Visuals.Settings.TeamCheck = Var
-end)
-
-MainChannel:Toggle("Alive Check", false, function(Var)
-    Visuals.Settings.AliveCheck = Var
-end)
-
---// Crosshair Channel
-CrosshairChannel:Toggle("Enabled", Visuals.Crosshair.Settings.Enabled, function(Var)
-    Visuals.Crosshair.Settings.Enabled = Var
-end)
-
-CrosshairChannel:Toggle("Cursor Enabled", UserInputService.MouseIconEnabled, function(Var)
-    UserInputService.MouseIconEnabled = Var
-end)
-
-CrosshairChannel:Seperator()
-
-CrosshairChannel:Slider("Transparency", 0, 100, Visuals.Crosshair.Settings.Transparency * 100, function(Var)
-    Visuals.Crosshair.Settings.Transparency = Var / 100
-end)
-
-CrosshairChannel:Seperator()
-
-CrosshairChannel:Slider("Thickness", 1, 5, Visuals.Crosshair.Settings.Thickness, function(Var)
-    Visuals.Crosshair.Settings.Thickness = Var
-end)
-
-CrosshairChannel:Slider("Size", 4, 35, Visuals.Crosshair.Settings.Size, function(Var)
-    Visuals.Crosshair.Settings.Size = Var
-end)
-
-CrosshairChannel:Slider("Gap Size", 0, 20, Visuals.Crosshair.Settings.Gap, function(Var)
-    Visuals.Crosshair.Settings.Gap = Var
-end)
-
-CrosshairChannel:Slider("Rotation", 0, 90, Visuals.Crosshair.Settings.Rotation, function(Var)
-    Visuals.Crosshair.Settings.Rotation = Var - 2
-end)
-
-CrosshairChannel:Dropdown("Position", {"Mouse", "Center Of Screen"}, function(Var)
-    if Var == "Mouse" then
-        Visuals.Crosshair.Settings.Type = 1
-    else
-        Visuals.Crosshair.Settings.Type = 2
+--// Main Section
+VisualsTab:CreateToggle({
+    Name = "Team Check",
+    CurrentValue = Visuals.Settings.TeamCheck,
+    Flag = "Visuals_1",
+    SectionParent = VisualsSection,
+    Callback = function(Var)
+        Visuals.Settings.TeamCheck = Var
     end
-end)
+})
 
-CrosshairChannel:Seperator()
+VisualsTab:CreateToggle({
+    Name = "Alive Check",
+    CurrentValue = Visuals.Settings.AliveCheck,
+    Flag = "Visuals_2",
+    SectionParent = VisualsSection,
+    Callback = function(Var)
+        Visuals.Settings.AliveCheck = Var
+    end
+})
 
-CrosshairChannel:Toggle("Dot Crosshair", false, function(Var)
-    Visuals.Crosshair.Settings.Dot = Var
-end)
+--// Text Section
+VisualsTab:CreateToggle({
+    Name = "Enabled",
+    CurrentValue = Visuals.Text.Enabled,
+    Flag = "Text_1",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.Enabled = Var
+    end
+})
 
-CrosshairChannel:Toggle("Filled", false, function(Var)
-    Visuals.Crosshair.Settings.DotFilled = Var
-end)
+VisualsTab:CreateToggle({
+    Name = "Display Name",
+    CurrentValue = Visuals.Text.DisplayName,
+    Flag = "Text_2",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.DisplayName = Var
+    end
+})
 
-CrosshairChannel:Slider("Size", 1, 35, Visuals.Crosshair.Settings.DotSize, function(Var)
-    Visuals.Crosshair.Settings.DotSize = Var
-end)
+VisualsTab:CreateToggle({
+    Name = "Use Nicknames",
+    CurrentValue = Visuals.Text.Nickname,
+    Flag = "Text_3",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.Nickname = Var
+    end
+})
 
-CrosshairChannel:Slider("Thickness", 1, 5, Visuals.Crosshair.Settings.DotThickness, function(Var)
-    Visuals.Crosshair.Settings.DotThickness = Var
-end)
+VisualsTab:CreateToggle({
+    Name = "Display Distance",
+    CurrentValue = Visuals.Text.DisplayDistance,
+    Flag = "Text_4",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.DisplayDistance = Var
+    end
+})
 
-CrosshairChannel:Slider("Transparency", 0, 100, Visuals.Crosshair.Settings.DotTransparency * 100, function(Var)
-    Visuals.Crosshair.Settings.DotTransparency = Var / 100
-end)
+VisualsTab:CreateToggle({
+    Name = "Display Health",
+    CurrentValue = Visuals.Text.DisplayHealth,
+    Flag = "Text_5",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.DisplayHealth = Var
+    end
+})
 
-CrosshairChannel:Seperator()
+VisualsTab:CreateToggle({
+    Name = "Limit Render Distance",
+    CurrentValue = Visuals.Text.LimitDistance,
+    Flag = "Text_6",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.LimitDistance = Var
+    end
+})
 
-CrosshairChannel:Colorpicker("Color", Visuals.Crosshair.Settings.Color, function(Var)
-    Visuals.Crosshair.Settings.Color = Var
-end)
+VisualsTab:CreateSlider({
+    Name = "Max Render Distance",
+    Range = {1, 25000},
+    Increment = 1,
+    Suffix = "Studs",
+    CurrentValue = Visuals.Text.MaxDistance,
+    Flag = "Text_7",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.MaxDistance = Var
+    end
+})
 
-CrosshairChannel:Colorpicker("Dot Color", Visuals.Crosshair.Settings.DotColor, function(Var)
-    Visuals.Crosshair.Settings.DotColor = Var
-end)
+VisualsTab:CreateColorPicker({
+    Name = "Text Color",
+    Color = Visuals.Text.Color,
+    Flag = "Text_8",
+    Callback = function(Var)
+        Visuals.Text.Color = Var
+    end
+})
 
---// Text Channel
-TextChannel:Toggle("Enabled", false, function(Var)
-    Visuals.Text.Enabled = Var
-end)
+VisualsTab:CreateToggle({
+    Name = "Text Outline",
+    CurrentValue = Visuals.Text.Outline,
+    Flag = "Text_9",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.Outline = Var
+    end
+})
 
-TextChannel:Toggle("Name", false, function(Var)
-    Visuals.Text.DisplayName = Var
-end)
+VisualsTab:CreateColorPicker({
+    Name = "Text Outline Color",
+    Color = Visuals.Text.OutlineColor,
+    Flag = "Text_10",
+    Callback = function(Var)
+        Visuals.Text.OutlineColor = Var
+    end
+})
 
-TextChannel:Toggle("Display Nickname", false, function(Var)
-    Visuals.Text.Nickname = Var
-end)
+VisualsTab:CreateDropdown({
+    Name = "Font",
+    Options = {"UI", "System", "Plex", "Monospace"},
+    CurrentOption = Visuals.Text.Font,
+    Flag = "Text_11",
+    Callback = function(Var)
+        Visuals.Text.Font = Var
+    end
+})
 
-TextChannel:Toggle("Distance", false, function(Var)
-    Visuals.Text.DisplayDistance = Var
-end)
+VisualsTab:CreateSlider({
+    Name = "Text Size",
+    Range = {4, 32},
+    Increment = 1,
+    Suffix = "Text Size",
+    CurrentValue = Visuals.Text.Size,
+    Flag = "Text_12",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.Size = Var
+    end
+})
 
-TextChannel:Toggle("Health", false, function(Var)
-    Visuals.Text.DisplayHealth = Var
-end)
+VisualsTab:CreateSlider({
+    Name = "Text Offset (From Head)",
+    Range = {0, 100},
+    Increment = 1,
+    Suffix = "Pixels",
+    CurrentValue = Visuals.Text.Offset,
+    Flag = "Text_13",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.Offset = Var
+    end
+})
 
-TextChannel:Toggle("Limit Render Distance", false, function(Var)
-    Visuals.Text.LimitDistance = Var
-end)
+VisualsTab:CreateSlider({
+    Name = "Text Transparency",
+    Range = {0, 1},
+    Increment = 0.01,
+    Suffix = "Transparency",
+    CurrentValue = Visuals.Text.Transparency,
+    Flag = "Text_14",
+    SectionParent = TextSection,
+    Callback = function(Var)
+        Visuals.Text.Transparency = Var
+    end
+})
 
-TextChannel:Slider("Max Distance", 1, 10000, Visuals.Text.MaxDistance, function(Var)
-    Visuals.Text.MaxDistance = Var
-end)
+--// Crosshair Section
+VisualsTab:CreateToggle({
+    Name = "Crosshair Enabled",
+    CurrentValue = Visuals.Crosshair.Enabled,
+    Flag = "Crosshair_1",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.Enabled = Var
+    end
+})
 
-TextChannel:Dropdown("Font", {"UI", "System", "Plex", "Monospace"}, function(Var)
-    Visuals.Text.Font = Var
-end)
+VisualsTab:CreateToggle({
+    Name = "Mouse Cursor Enabled",
+    CurrentValue = UserInputService.MouseIconEnabled,
+    Flag = "Crosshair_2",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        UserInputService.MouseIconEnabled = Var
+    end
+})
 
-TextChannel:Slider("Size", 4, 32, Visuals.Text.Size, function(Var)
-    Visuals.Text.Size = Var
-end)
+VisualsTab:CreateDropdown({
+    Name = "Crosshair Position",
+    Options = {"Mouse", "Center Of Screen"},
+    CurrentOption = "Mouse",
+    Flag = "Crosshair_3",
+    Callback = function(Var)
+        if Var == "Mouse" then
+            Visuals.Crosshair.Type = 1
+        else
+            Visuals.Crosshair.Type = 2
+        end
+    end
+})
 
-TextChannel:Slider("Offset", 0, 100, Visuals.Text.Offset, function(Var)
-    Visuals.Text.Offset = Var
-end)
+VisualsTab:CreateColorPicker({
+    Name = "Crosshair Color",
+    Color = Visuals.Crosshair.Color,
+    Flag = "Crosshair_4",
+    Callback = function(Var)
+        Visuals.Crosshair.Color = Var
+    end
+})
 
-TextChannel:Slider("Transparency", 0, 100, Visuals.Text.Transparency * 100, function(Var)
-    Visuals.Text.Transparency = Var / 100
-end)
+VisualsTab:CreateSlider({
+    Name = "Crosshair Thickness",
+    Range = {1, 5},
+    Increment = 1,
+    Suffix = "Pixels",
+    CurrentValue = Visuals.Crosshair.Thickness,
+    Flag = "Crosshair_5",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.Thickness = Var
+    end
+})
 
-TextChannel:Toggle("Outline", false, function(Var)
-    Visuals.Text.Outline = Var
-end)
+VisualsTab:CreateSlider({
+    Name = "Crosshair Size",
+    Range = {3, 50},
+    Increment = 1,
+    Suffix = "Pixels",
+    CurrentValue = Visuals.Crosshair.Size,
+    Flag = "Crosshair_6",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.Size = Var
+    end
+})
 
-TextChannel:Seperator()
+VisualsTab:CreateSlider({
+    Name = "Crosshair Gap Size",
+    Range = {0, 50},
+    Increment = 1,
+    Suffix = "Pixels",
+    CurrentValue = Visuals.Crosshair.Gap,
+    Flag = "Crosshair_7",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.Gap = Var
+    end
+})
 
-TextChannel:Colorpicker("Color", Visuals.Text.Color, function(Var)
-    Visuals.Text.Color = Var
-end)
+VisualsTab:CreateSlider({
+    Name = "Crosshair Rotation",
+    Range = {0, 90},
+    Increment = 1,
+    Suffix = "Degrees",
+    CurrentValue = Visuals.Crosshair.Rotation,
+    Flag = "Crosshair_8",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.Rotation = Var
+    end
+})
 
-TextChannel:Colorpicker("Outline Color", Visuals.Text.OutlineColor, function(Var)
-    Visuals.Text.OutlineColor = Var
-end)
+VisualsTab:CreateToggle({
+    Name = "Crosshair Dot Enabled",
+    CurrentValue = Visuals.Crosshair.Dot,
+    Flag = "Crosshair_9",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.Dot = Var
+    end
+})
+
+VisualsTab:CreateToggle({
+    Name = "Crosshair Dot Filled",
+    CurrentValue = Visuals.Crosshair.DotFilled,
+    Flag = "Crosshair_10",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.DotFilled = Var
+    end
+})
+
+VisualsTab:CreateColorPicker({
+    Name = "Crosshair Dot Color",
+    Color = Visuals.Crosshair.DotColor,
+    Flag = "Crosshair_11",
+    Callback = function(Var)
+        Visuals.Crosshair.DotColor = Var
+    end
+})
+
+VisualsTab:CreateSlider({
+    Name = "Crosshair Dot Size",
+    Range = {0, 50},
+    Increment = 1,
+    Suffix = "Pixels",
+    CurrentValue = Visuals.Crosshair.DotSize,
+    Flag = "Crosshair_12",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.DotSize = Var
+    end
+})
+
+VisualsTab:CreateSlider({
+    Name = "Crosshair Thickness",
+    Range = {1, 5},
+    Increment = 1,
+    Suffix = "Pixels",
+    CurrentValue = Visuals.Crosshair.DotThickness,
+    Flag = "Crosshair_13",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.DotThickness = Var
+    end
+})
+
+VisualsTab:CreateSlider({
+    Name = "Crosshair Transparency",
+    Range = {0, 1},
+    Increment = 0.01,
+    Suffix = "Transparency",
+    CurrentValue = Visuals.Crosshair.DotTransparency,
+    Flag = "Crosshair_14",
+    SectionParent = CrosshairSection,
+    Callback = function(Var)
+        Visuals.Crosshair.DotTransparency = Var
+    end
+})

@@ -18,16 +18,16 @@ getgenv().UniversalHub.Visuals = {
     Text = {
         Enabled = false,
         Color = Color3.fromRGB(255, 255, 255),
-        Outline = false,
+        Outline = true,
         OutlineColor = Color3.fromRGB(0, 0, 0),
         Size = 14,
         Transparency = 0.7,
-        Font = Drawing.Fonts.UI,
+        Font = "UI",
         Offset = 20,
         LimitDistance = false,
         MaxDistance = 3000,
-        Nickname = false,
-        DisplayName = false,
+        Nickname = true,
+        DisplayName = true,
         DisplayDistance = false,
         DisplayHealth = false
     },
@@ -239,7 +239,7 @@ local Visuals = {
                         PlayerTable.Text.OutlineColor = Environment.Text.OutlineColor
                         PlayerTable.Text.Color = Environment.Text.Color
                         PlayerTable.Text.Transparency = Environment.Text.Transparency
-                        PlayerTable.Text.Font = Environment.Text.Font
+                        PlayerTable.Text.Font = Drawing.Fonts[Environment.Text.Font]
 
                         if Environment.Text.DisplayName then
                             if Environment.Text.Nickname then
