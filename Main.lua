@@ -20,12 +20,7 @@ local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-In
 local Window = Library:CreateWindow({
     Name = "Universal Hub | By DrkSlk",
     LoadingTitle = "Universal Hub",
-    LoadingSubtitle = "By DrkSlk",
-    ConfigurationSaving = {
-        Enabled = true,
-        FolderName = "UniversalHub",
-        FileName = "UniversalHub"
-    }
+    LoadingSubtitle = "By DrkSlk"
 })
 
 --// Tabs
