@@ -1,4 +1,4 @@
---// Lauch Check
+--// Launch Check
 if not getgenv().UniversalHub or getgenv().UniversalHub.Visuals then
     return
 end
@@ -12,7 +12,6 @@ local Workspace = game:GetService("Workspace")
 --// Environment
 getgenv().UniversalHub.Visuals = {
     Settings = {
-        Enabled = false,
         TeamCheck = false,
         AliveCheck = true
     },
@@ -34,7 +33,7 @@ getgenv().UniversalHub.Visuals = {
     },
     Crosshair = {
         Settings = {
-            Enabled = true,
+            Enabled = false,
             Type = 1,
             Size = 12,
             Thickness = 1,

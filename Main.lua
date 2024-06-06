@@ -27,6 +27,8 @@ local MainChannel = VisualsServer:Channel("Main")
 local CrosshairChannel = VisualsServer:Channel("Crosshair")
 local TextChannel = VisualsServer:Channel("Text")
 
+
+
 --// Crosshair Channel
 CrosshairChannel:Toggle("Enabled", Visuals.Crosshair.Settings.Enabled, function(Var)
     Visuals.Crosshair.Settings.Enabled = Var
