@@ -166,6 +166,7 @@ VisualsTab:CreateDropdown({
     Options = {"UI", "System", "Plex", "Monospace"},
     CurrentOption = Visuals.Text.Font,
     Flag = "Text_11",
+    SectionParent = TextSection,
     Callback = function(Var)
         Visuals.Text.Font = Var
     end
