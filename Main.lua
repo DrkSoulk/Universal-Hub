@@ -27,7 +27,14 @@ local MainChannel = VisualsServer:Channel("Main")
 local CrosshairChannel = VisualsServer:Channel("Crosshair")
 local TextChannel = VisualsServer:Channel("Text")
 
+--// Main Channel
+MainChannel:Toggle("Team Check", false, function(Var)
+    Visuals.Settings.TeamCheck = Var
+end)
 
+MainChannel:Toggle("Alive Check", false, function(Var)
+    Visuals.Settings.AliveCheck = Var
+end)
 
 --// Crosshair Channel
 CrosshairChannel:Toggle("Enabled", Visuals.Crosshair.Settings.Enabled, function(Var)
@@ -39,10 +46,6 @@ CrosshairChannel:Toggle("Cursor Enabled", UserInputService.MouseIconEnabled, fun
 end)
 
 CrosshairChannel:Seperator()
-
-CrosshairChannel:Colorpicker("Color", Visuals.Crosshair.Settings.Color, function(Var)
-    Visuals.Crosshair.Settings.Color = Var
-end)
 
 CrosshairChannel:Slider("Transparency", 0, 100, Visuals.Crosshair.Settings.Transparency * 100, function(Var)
     Visuals.Crosshair.Settings.Transparency = Var / 100
@@ -76,15 +79,11 @@ end)
 
 CrosshairChannel:Seperator()
 
-CrosshairChannel:Toggle("Dot Crosshair", Visuals.Crosshair.Settings.Dot, function(Var)
+CrosshairChannel:Toggle("Dot Crosshair", false, function(Var)
     Visuals.Crosshair.Settings.Dot = Var
 end)
 
-CrosshairChannel:Colorpicker("Color", Visuals.Crosshair.Settings.DotColor, function(Var)
-    Visuals.Crosshair.Settings.DotColor = Var
-end)
-
-CrosshairChannel:Toggle("Filled", Visuals.Crosshair.Settings.DotFilled, function(Var)
+CrosshairChannel:Toggle("Filled", false, function(Var)
     Visuals.Crosshair.Settings.DotFilled = Var
 end)
 
@@ -100,28 +99,38 @@ CrosshairChannel:Slider("Transparency", 0, 100, Visuals.Crosshair.Settings.DotTr
     Visuals.Crosshair.Settings.DotTransparency = Var / 100
 end)
 
+CrosshairChannel:Seperator()
+
+CrosshairChannel:Colorpicker("Color", Visuals.Crosshair.Settings.Color, function(Var)
+    Visuals.Crosshair.Settings.Color = Var
+end)
+
+CrosshairChannel:Colorpicker("Dot Color", Visuals.Crosshair.Settings.DotColor, function(Var)
+    Visuals.Crosshair.Settings.DotColor = Var
+end)
+
 --// Text Channel
-TextChannel:Toggle("Enabled", Visuals.Text.Enabled, function(Var)
+TextChannel:Toggle("Enabled", false, function(Var)
     Visuals.Text.Enabled = Var
 end)
 
-TextChannel:Toggle("Name", Visuals.Text.DisplayName, function(Var)
+TextChannel:Toggle("Name", false, function(Var)
     Visuals.Text.DisplayName = Var
 end)
 
-TextChannel:Toggle("Display Nickname", Visuals.Text.Nickname, function(Var)
+TextChannel:Toggle("Display Nickname", false, function(Var)
     Visuals.Text.Nickname = Var
 end)
 
-TextChannel:Toggle("Distance", Visuals.Text.DisplayDistance, function(Var)
+TextChannel:Toggle("Distance", false, function(Var)
     Visuals.Text.DisplayDistance = Var
 end)
 
-TextChannel:Toggle("Health", Visuals.Text.DisplayHealth, function(Var)
+TextChannel:Toggle("Health", false, function(Var)
     Visuals.Text.DisplayHealth = Var
 end)
 
-TextChannel:Toggle("Limit Render Distance", Visuals.Text.LimitDistance, function(Var)
+TextChannel:Toggle("Limit Render Distance", false, function(Var)
     Visuals.Text.LimitDistance = Var
 end)
 
@@ -129,24 +138,8 @@ TextChannel:Slider("Max Distance", 1, 10000, Visuals.Text.MaxDistance, function(
     Visuals.Text.MaxDistance = Var
 end)
 
-TextChannel:Seperator()
-
-TextChannel:Colorpicker("Color", Visuals.Text.Color, function(Var)
-    Visuals.Text.Color = Var
-end)
-
-TextChannel:Toggle("Outline", Visuals.Text.Outline, function(Var)
-    Visuals.Text.Outline = Var
-end)
-
-TextChannel:Colorpicker("OutlineColor", Visuals.Text.OutlineColor, function(Var)
-    Visuals.Text.OutlineColor = Var
-end)
-
-TextChannel:Seperator()
-
 TextChannel:Dropdown("Font", {"UI", "System", "Plex", "Monospace"}, function(Var)
-    Visuals.Text.Settings.Font = Var
+    Visuals.Text.Font = Var
 end)
 
 TextChannel:Slider("Size", 4, 32, Visuals.Text.Size, function(Var)
@@ -159,4 +152,18 @@ end)
 
 TextChannel:Slider("Transparency", 0, 100, Visuals.Text.Transparency * 100, function(Var)
     Visuals.Text.Transparency = Var / 100
+end)
+
+TextChannel:Toggle("Outline", false, function(Var)
+    Visuals.Text.Outline = Var
+end)
+
+TextChannel:Seperator()
+
+TextChannel:Colorpicker("Color", Visuals.Text.Color, function(Var)
+    Visuals.Text.Color = Var
+end)
+
+TextChannel:Colorpicker("Outline Color", Visuals.Text.OutlineColor, function(Var)
+    Visuals.Text.OutlineColor = Var
 end)

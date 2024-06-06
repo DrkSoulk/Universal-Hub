@@ -13,12 +13,12 @@ local Workspace = game:GetService("Workspace")
 getgenv().UniversalHub.Visuals = {
     Settings = {
         TeamCheck = false,
-        AliveCheck = true
+        AliveCheck = false
     },
     Text = {
         Enabled = false,
         Color = Color3.fromRGB(255, 255, 255),
-        Outline = true,
+        Outline = false,
         OutlineColor = Color3.fromRGB(0, 0, 0),
         Size = 14,
         Transparency = 0.7,
@@ -27,9 +27,9 @@ getgenv().UniversalHub.Visuals = {
         LimitDistance = false,
         MaxDistance = 3000,
         Nickname = false,
-        DisplayName = true,
-        DisplayDistance = true,
-        DisplayHealth = true
+        DisplayName = false,
+        DisplayDistance = false,
+        DisplayHealth = false
     },
     Crosshair = {
         Settings = {
@@ -45,7 +45,7 @@ getgenv().UniversalHub.Visuals = {
             DotColor = Color3.fromRGB(255, 255, 255),
             DotSize = 5,
             DotTransparency = 0.5,
-            DotFilled = true,
+            DotFilled = false,
             DotThickness = 1
         },
         Parts = {
