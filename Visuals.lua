@@ -179,7 +179,7 @@ local Visuals = {
 				Environment.Crosshair.Parts.RightLine.Transparency = Environment.Crosshair.Settings.Transparency
 
 
-				Environment.Crosshair.Parts.RightLine.From = Vector2.new(x + (math.cos(math.rad(Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap), y + (math.sin(math.rad(Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap))
+				Environment.Crosshair.Parts.RightLine.From = Vector2.new(x + (math.cos(math.rad(Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap), y + (math.sin(math.rad(Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap) - 1)
 				Environment.Crosshair.Parts.RightLine.To = Vector2.new(x + (math.cos(math.rad(Environment.Crosshair.Settings.Rotation)) * (Environment.Crosshair.Settings.Size + Environment.Crosshair.Settings.Gap)), y + (math.sin(math.rad(Environment.Crosshair.Settings.Rotation)) * (Environment.Crosshair.Settings.Size + Environment.Crosshair.Settings.Gap)))
 
 				--// Top Line
@@ -197,7 +197,7 @@ local Visuals = {
 				Environment.Crosshair.Parts.BottomLine.Thickness = Environment.Crosshair.Settings.Thickness
 				Environment.Crosshair.Parts.BottomLine.Transparency = Environment.Crosshair.Settings.Transparency
 
-				Environment.Crosshair.Parts.BottomLine.From = Vector2.new(x + (math.sin(math.rad(-Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap), y + (math.cos(math.rad(-Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap))
+				Environment.Crosshair.Parts.BottomLine.From = Vector2.new(x + (math.sin(math.rad(-Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap), y + (math.cos(math.rad(-Environment.Crosshair.Settings.Rotation)) * Environment.Crosshair.Settings.Gap) - 1)
 				Environment.Crosshair.Parts.BottomLine.To = Vector2.new(x + (math.sin(math.rad(-Environment.Crosshair.Settings.Rotation)) * (Environment.Crosshair.Settings.Size + Environment.Crosshair.Settings.Gap)), y + (math.cos(math.rad(-Environment.Crosshair.Settings.Rotation)) * (Environment.Crosshair.Settings.Size + Environment.Crosshair.Settings.Gap)))
 
 				--// Center Dot

@@ -135,6 +135,7 @@ VisualsTab:CreateColorPicker({
     Name = "Text Color",
     Color = Visuals.Text.Color,
     Flag = "Text_8",
+    SectionParent = TextSection,
     Callback = function(Var)
         Visuals.Text.Color = Var
     end
@@ -154,6 +155,7 @@ VisualsTab:CreateColorPicker({
     Name = "Text Outline Color",
     Color = Visuals.Text.OutlineColor,
     Flag = "Text_10",
+    SectionParent = TextSection,
     Callback = function(Var)
         Visuals.Text.OutlineColor = Var
     end
@@ -211,11 +213,11 @@ VisualsTab:CreateSlider({
 --// Crosshair Section
 VisualsTab:CreateToggle({
     Name = "Crosshair Enabled",
-    CurrentValue = Visuals.Crosshair.Enabled,
+    CurrentValue = Visuals.Crosshair.Settings.Enabled,
     Flag = "Crosshair_1",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Enabled = Var
+        Visuals.Crosshair.Settings.Enabled = Var
     end
 })
 
@@ -234,21 +236,23 @@ VisualsTab:CreateDropdown({
     Options = {"Mouse", "Center Of Screen"},
     CurrentOption = "Mouse",
     Flag = "Crosshair_3",
+    SectionParent = CrosshairSection,
     Callback = function(Var)
         if Var == "Mouse" then
-            Visuals.Crosshair.Type = 1
+            Visuals.Crosshair.Settings.Type = 1
         else
-            Visuals.Crosshair.Type = 2
+            Visuals.Crosshair.Settings.Type = 2
         end
     end
 })
 
 VisualsTab:CreateColorPicker({
     Name = "Crosshair Color",
-    Color = Visuals.Crosshair.Color,
+    Color = Visuals.Crosshair.Settings.Color,
     Flag = "Crosshair_4",
+    SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Color = Var
+        Visuals.Crosshair.Settings.Color = Var
     end
 })
 
@@ -257,11 +261,11 @@ VisualsTab:CreateSlider({
     Range = {1, 5},
     Increment = 1,
     Suffix = "Pixels",
-    CurrentValue = Visuals.Crosshair.Thickness,
+    CurrentValue = Visuals.Crosshair.Settings.Thickness,
     Flag = "Crosshair_5",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Thickness = Var
+        Visuals.Crosshair.Settings.Thickness = Var
     end
 })
 
@@ -270,11 +274,11 @@ VisualsTab:CreateSlider({
     Range = {3, 50},
     Increment = 1,
     Suffix = "Pixels",
-    CurrentValue = Visuals.Crosshair.Size,
+    CurrentValue = Visuals.Crosshair.Settings.Size,
     Flag = "Crosshair_6",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Size = Var
+        Visuals.Crosshair.Settings.Size = Var
     end
 })
 
@@ -283,11 +287,11 @@ VisualsTab:CreateSlider({
     Range = {0, 50},
     Increment = 1,
     Suffix = "Pixels",
-    CurrentValue = Visuals.Crosshair.Gap,
+    CurrentValue = Visuals.Crosshair.Settings.Gap,
     Flag = "Crosshair_7",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Gap = Var
+        Visuals.Crosshair.Settings.Gap = Var
     end
 })
 
@@ -296,40 +300,41 @@ VisualsTab:CreateSlider({
     Range = {0, 90},
     Increment = 1,
     Suffix = "Degrees",
-    CurrentValue = Visuals.Crosshair.Rotation,
+    CurrentValue = Visuals.Crosshair.Settings.Rotation,
     Flag = "Crosshair_8",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Rotation = Var
+        Visuals.Crosshair.Settings.Rotation = Var
     end
 })
 
 VisualsTab:CreateToggle({
     Name = "Crosshair Dot Enabled",
-    CurrentValue = Visuals.Crosshair.Dot,
+    CurrentValue = Visuals.Crosshair.Settings.Dot,
     Flag = "Crosshair_9",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.Dot = Var
+        Visuals.Crosshair.Settings.Dot = Var
     end
 })
 
 VisualsTab:CreateToggle({
     Name = "Crosshair Dot Filled",
-    CurrentValue = Visuals.Crosshair.DotFilled,
+    CurrentValue = Visuals.Crosshair.Settings.DotFilled,
     Flag = "Crosshair_10",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.DotFilled = Var
+        Visuals.Crosshair.Settings.DotFilled = Var
     end
 })
 
 VisualsTab:CreateColorPicker({
     Name = "Crosshair Dot Color",
-    Color = Visuals.Crosshair.DotColor,
+    Color = Visuals.Crosshair.Settings.DotColor,
     Flag = "Crosshair_11",
+    SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.DotColor = Var
+        Visuals.Crosshair.Settings.DotColor = Var
     end
 })
 
@@ -338,11 +343,11 @@ VisualsTab:CreateSlider({
     Range = {0, 50},
     Increment = 1,
     Suffix = "Pixels",
-    CurrentValue = Visuals.Crosshair.DotSize,
+    CurrentValue = Visuals.Crosshair.Settings.DotSize,
     Flag = "Crosshair_12",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.DotSize = Var
+        Visuals.Crosshair.Settings.DotSize = Var
     end
 })
 
@@ -351,11 +356,11 @@ VisualsTab:CreateSlider({
     Range = {1, 5},
     Increment = 1,
     Suffix = "Pixels",
-    CurrentValue = Visuals.Crosshair.DotThickness,
+    CurrentValue = Visuals.Crosshair.Settings.DotThickness,
     Flag = "Crosshair_13",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.DotThickness = Var
+        Visuals.Crosshair.Settings.DotThickness = Var
     end
 })
 
@@ -364,10 +369,10 @@ VisualsTab:CreateSlider({
     Range = {0, 1},
     Increment = 0.01,
     Suffix = "Transparency",
-    CurrentValue = Visuals.Crosshair.DotTransparency,
+    CurrentValue = Visuals.Crosshair.Settings.DotTransparency,
     Flag = "Crosshair_14",
     SectionParent = CrosshairSection,
     Callback = function(Var)
-        Visuals.Crosshair.DotTransparency = Var
+        Visuals.Crosshair.Settings.DotTransparency = Var
     end
 })
