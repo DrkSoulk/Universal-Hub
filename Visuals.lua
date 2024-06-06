@@ -89,14 +89,8 @@ end
 
 local function GetCharacterPart(Character, Part)
     for _, v in ipairs(Character:GetChildren()) do
-        if v:IsA("BasePart") or v:IsA("MeshPart") then
-            if Part == "Head" then
-                if v:FindFirstChildOfClass("Decal") and (v.Name == "Head" or v:FindFirstChild("face")) then
-                    return v
-                end
-            else
-                return v
-            end
+        if (v:IsA("BasePart") or v:IsA("MeshPart")) and v.Name == Part then
+            return v
         end
     end
 end
@@ -112,7 +106,7 @@ end
 local function AssignRigType(Player)
 	local PlayerTable = GetPlayerTable(Player)
 
-	repeat wait(0) until GetCharacter(Player)
+	repeat wait(0) until Player.Character
 
     local Character = GetCharacter(Player)
 
@@ -233,8 +227,8 @@ local Visuals = {
             if Character and GetCharacterPart(Character, "HumanoidRootPart") and GetCharacterPart(Character, "Head") and Environment.Text.Enabled then
                 local Vector, OnScreen = WorldToViewportPoint(GetCharacterPart(Character, "Head").Position)
 
-                if OnScreen and Environment.Text.Enabled then
-                    PlayerTable.Text.Visuals = PlayerTable.Checks.Alive and PlayerTable.Checks.Team and true or false
+                if OnScreen then
+                    PlayerTable.Text.Visible = PlayerTable.Checks.Alive and PlayerTable.Checks.Team and true or false
 
                     if PlayerTable.Text.Visible then
                         local Content = ""
@@ -271,8 +265,8 @@ local Visuals = {
                             Content = Content.."("..tostring(math.floor(Character:FindFirstChildOfClass("Humanoid").Health))..")"
                         end
 
-                        PlayerTable.Text = Content
-                        PlayerTable.Position = Vector2.new(Vector.X, Vector.Y - Environment.Text.Offset)
+                        PlayerTable.Text.Text = Content
+                        PlayerTable.Text.Position = Vector2.new(Vector.X, Vector.Y - Environment.Text.Offset)
                     end
                 else
                     PlayerTable.Text.Visible = false
@@ -287,7 +281,7 @@ local Visuals = {
 --// Functions
 local function Wrap(Player)
     if not GetPlayerTable(Player) then
-        local Table, Value = nil, {Name = Player.Name, Check = {Alive = true, Team = true}, Connections = {}, Text = nil}
+        local Table, Value = nil, {Name = Player.Name, Checks = {Alive = true, Team = true}, Connections = {}, Text = nil}
 
         for _, v in next, Environment.WrappedPlayers do
             if v[1] == Player.Name then
