@@ -16,23 +16,21 @@ getgenv().UniversalHub.Visuals = {
         TeamCheck = false,
         AliveCheck = true
     },
-    Visuals = {
-        Text = {
-            Enabled = false,
-            Color = Color3.fromRGB(255, 255, 255),
-            Outline = true,
-            OutlineColor = Color3.fromRGB(0, 0, 0),
-            Size = 14,
-            Transparency = 0.7,
-            Font = Drawing.Fonts.UI,
-            Offset = 20,
-            LimitDistance = false,
-            MaxDistance = 3000,
-            Nickname = false,
-            DisplayName = true,
-            DisplayDistance = true,
-            DisplayHealth = true
-        }
+    Text = {
+        Enabled = false,
+        Color = Color3.fromRGB(255, 255, 255),
+        Outline = true,
+        OutlineColor = Color3.fromRGB(0, 0, 0),
+        Size = 14,
+        Transparency = 0.7,
+        Font = Drawing.Fonts.UI,
+        Offset = 20,
+        LimitDistance = false,
+        MaxDistance = 3000,
+        Nickname = false,
+        DisplayName = true,
+        DisplayDistance = true,
+        DisplayHealth = true
     },
     Crosshair = {
         Settings = {
@@ -43,7 +41,7 @@ getgenv().UniversalHub.Visuals = {
             Color = Color3.fromRGB(255, 255, 255),
             Transparency = 1,
             Gap = 5,
-            Rotation = 0,
+            Rotation = -2,
             Dot = false,
             DotColor = Color3.fromRGB(255, 255, 255),
             DotSize = 1,
@@ -64,7 +62,6 @@ getgenv().UniversalHub.Visuals = {
 
 --// Environment
 local Environment = getgenv().UniversalHub.Visuals
-local EnvironmentSettings, EnvironmentVisuals = Environment.Settings, Environment.Visuals
 
 --// Variables
 local LocalPlayer, Camera = Players.LocalPlayer, Workspace.CurrentCamera
@@ -234,10 +231,10 @@ local Visuals = {
         PlayerTable.Connections.Text = RunService.RenderStepped:Connect(function()
             local Character = GetCharacter(Player)
 
-            if Character and GetCharacterPart(Character, "HumanoidRootPart") and GetCharacterPart(Character, "Head") and EnvironmentVisuals.Text.Enabled then
+            if Character and GetCharacterPart(Character, "HumanoidRootPart") and GetCharacterPart(Character, "Head") and Environment.Text.Enabled then
                 local Vector, OnScreen = WorldToViewportPoint(GetCharacterPart(Character, "Head").Position)
 
-                if OnScreen and EnvironmentVisuals.Text.Enabled then
+                if OnScreen and Environment.Text.Enabled then
                     return
                 end
             end
